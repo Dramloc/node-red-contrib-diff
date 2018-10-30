@@ -29,5 +29,5 @@ module.exports = (RED) => {
       return node.send({ payload: result });
     });
   }
-  RED.nodes.registerType('DIFF', diff);
+  RED.nodes.registerType('diff', diff);
 };
