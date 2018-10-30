@@ -1,0 +1,35 @@
+<script type="text/x-red" data-template-name="DIFF">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-keyPath"><i class="fa fa-comments"></i> Key path</label>
+    <input type="text" id="node-input-keyPath" placeholder="Key path">
+  </div>
+  <div class="form-row">
+    <label for="node-input-outField"><i class="fa fa-edit"></i> Result to</label>
+    msg.<input type="text" id="node-input-outField" placeholder="payload" style="width: 64%;">
+  </div>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('DIFF', {
+    category: 'function',
+    color: '#a6bbcf',
+    defaults: {
+      name: { value: "" },
+      keyPath: { value: "id" },
+      outField: { value: "payload" }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "function.png",
+    label: function () {
+      return this.name || "";
+    },
+    labelStyle: function () {
+      return this.name ? "node_label_italic" : "";
+    },
+  });
+</script>

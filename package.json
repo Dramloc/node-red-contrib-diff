@@ -1,0 +1,24 @@
+{
+  "name": "node-red-contrib-diff",
+  "version": "0.0.7",
+  "description": "Array diff between consecutive inputs",
+  "main": "diff.js",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "node-red": {
+    "nodes": {
+      "diff": "diff.js"
+    }
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "author": "Antoine Colmard <a.colmard@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
