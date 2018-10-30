@@ -1,33 +1,33 @@
-const get = require('lodash/get');
+const get = require("lodash/get");
 
-module.exports = (RED) => {
+module.exports = RED => {
   function diff(config) {
     RED.nodes.createNode(this, config);
     const node = this;
-    const { keyPath } = node.config;
+    const { keyPath } = config;
     node.lastPayload = null;
 
     const diffPayloads = (previous, current) => {
-      current.reduce((result, item) => {
+      return current.reduce((result, item) => {
         if (
           previous.some(other => get(other, keyPath) === get(item, keyPath))
         ) {
-          return [...result, item];
+          return result;
         }
-        return result;
+        return [...result, item];
       }, []);
     };
 
-    node.on('input', (msg) => {
+    node.on("input", msg => {
       const { payload } = msg;
-      if (node.lastInput === null) {
+      if (node.lastPayload === null) {
         node.lastPayload = payload;
-        return node.send({ payload });
+        return;
       }
       const result = diffPayloads(node.lastPayload, payload);
       node.lastPayload = payload;
       return node.send({ payload: result });
     });
   }
-  RED.nodes.registerType('diff', diff);
+  RED.nodes.registerType("diff", diff);
 };
